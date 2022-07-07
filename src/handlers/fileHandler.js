@@ -24,7 +24,6 @@ const serveFileContent = (resourcePath) => (request, response, next) => {
   const fileName = `${resourcePath}${pathname}`;
 
   fs.readFile(fileName, (err, data) => {
-    console.log(err);
     if (err) {
       return next();
     }

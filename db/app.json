@@ -1,0 +1,18 @@
+{
+  "name": "Flower Catalog App",
+  "description": "A simple catalog app on flowers",
+  "Developer": "Prem Kumar",
+  "languages": [
+    "JavaScript"
+  ],
+  "repo_url": "https://github.com/premkpavuluri/flowerCatalogApp",
+  "home_url": "http://localhost/index.html",
+  "catalogs": [
+    "abeliophyllum",
+    "ageratum"
+  ],
+  "features": {
+    "catalogs_url": "https://localhost/html/{catalogname}",
+    "guestbook_url": "https://localhost/guestbook"
+  }
+}
