@@ -6,7 +6,7 @@ const loginPage = `<html>
   <form action="/login" method="post">
     <label for="username">Username</label>
   <input type="text" name="username" id="name">
-  <input type="submit" value="submit">
+  <input type="submit" value="login">
   </form>
 </body>
 </html>`;
