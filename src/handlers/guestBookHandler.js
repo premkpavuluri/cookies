@@ -25,7 +25,8 @@ const persistComments = (comments, fileName) => {
 
 const addComment = (request, response) => {
   const date = request.timeStamp;
-  const comment = { ...request.bodyParams, date };
+  const { username: name } = request.session;
+  const comment = { name, comment: request.bodyParams.comment, date };
 
   request.guestBook.unshift(comment);
 
