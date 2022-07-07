@@ -35,7 +35,7 @@ const loginHandler = (sessions) => (req, res, next) => {
 
   if (req.session) {
     res.statusCode = 302;
-    res.setHeader('Location', '/protected');
+    res.setHeader('Location', '/');
     res.end('already logged in');
     return;
   }

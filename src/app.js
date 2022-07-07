@@ -8,6 +8,7 @@ const { loginHandler } = require('./handlers/loginHandler.js');
 const { serveFileContent } = require('./handlers/fileHandler.js');
 const { handleGuestBook } = require('./handlers/guestBookHandler.js');
 const { loadCommentsHandler } = require('./handlers/loadComments.js');
+const { authenticateSession } = require('./handlers/authenticateSession.js');
 
 const sessions = {};
 const sessionHandler = injectSession(sessions);
@@ -21,6 +22,7 @@ const handlers = [
   sessionHandler,
   loginUserHandler,
   protectedHandler,
+  authenticateSession,
   loadCommentsHandler('./db/comments.json'),
   handleGuestBook,
   serveFileContent('./public'),
