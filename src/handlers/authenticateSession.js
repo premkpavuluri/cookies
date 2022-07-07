@@ -5,7 +5,7 @@ const authenticateSession = (req, res, next) => {
   }
 
   res.statusCode = 302;
-  res.setHeader('Location', '/login');
+  res.setHeader('Location', '/loginpage');
   res.end('Access denied.');
 };
 

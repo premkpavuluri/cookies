@@ -1,21 +1,3 @@
-const loginPage = `<html>
-<head>
-  <title>login</title>
-</head>
-<body>
-  <form action="/login" method="post">
-    <label for="username">Username</label>
-  <input type="text" name="username" id="name">
-  <input type="submit" value="login">
-  </form>
-</body>
-</html>`;
-
-const showLoginPage = (req, res) => {
-  res.setHeader('content-type', 'text/html');
-  res.end(loginPage);
-};
-
 const generateSessionId = () => {
   return new Date().getTime();
 };
@@ -33,18 +15,6 @@ const loginHandler = (sessions) => (req, res, next) => {
     return;
   }
 
-  if (req.session) {
-    res.statusCode = 302;
-    res.setHeader('Location', '/');
-    res.end('already logged in');
-    return;
-  }
-
-  if (req.method === 'GET') {
-    showLoginPage(req, res);
-    return;
-  }
-
   const username = req.bodyParams.username;
 
   if (req.method === 'POST' && username) {
@@ -53,8 +23,11 @@ const loginHandler = (sessions) => (req, res, next) => {
     sessions[sessionId] = session;
 
     res.setHeader('Set-Cookie', `sessionId=${sessionId}`);
-    res.end('sucessfully logged in');
   }
+
+  res.statusCode = 302;
+  res.setHeader('Location', '/');
+  res.end('sucessfully logged in');
 };
 
 module.exports = { loginHandler };

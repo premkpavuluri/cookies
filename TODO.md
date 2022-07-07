@@ -1,12 +1,12 @@
 # Cookie.
 
 - **TODO**
-  - [ ] separate the loginPage and loginUser concern.
   - [ ] Consider user validation in loginHandler.
   - [ ] Persist the session info.
-  - [ ] Make register user.
+  - [ ] Make register user(signUp).
 
 - **DONE:**
+  - [x] separate the loginPage and loginUser concern.
   - [x] post the comment against logged user.
   - [x] Make logout.
     - [x] clear the sessionId in sessions.
