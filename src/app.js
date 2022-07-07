@@ -11,6 +11,7 @@ const { authenticateSession } = require('./handlers/authenticateSession.js');
 const { logoutHandler } = require('./handlers/logoutHandler.js');
 const { loginHandler } = require('./handlers/loginHandler.js');
 const { loginPageHandler } = require('./handlers/loginPageHandler.js');
+const { loadLoginForm } = require('./handlers/loadLoginForm.js');
 
 const sessions = {};
 const sessionHandler = injectSession(sessions);
@@ -21,6 +22,7 @@ const handlers = [
   urlParserHandler,
   parseBodyParams,
   logRequestHandler,
+  loadLoginForm,
   injectCookie,
   sessionHandler,
   loginPageHandler,

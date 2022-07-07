@@ -1,19 +1,6 @@
-const loginPage = `<html>
-<head>
-  <title>login Page</title>
-</head>
-<body>
-  <form action="/login" method="post">
-    <label for="username">Username</label>
-  <input type="text" name="username" id="name">
-  <input type="submit" value="login">
-  </form>
-</body>
-</html>`;
-
 const showLoginPage = (req, res) => {
   res.setHeader('content-type', 'text/html');
-  res.end(loginPage);
+  res.end(req.loginForm);
 };
 
 const loginPageHandler = (req, res, next) => {
