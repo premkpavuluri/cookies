@@ -1,0 +1,28 @@
+.page-header {
+  border-bottom: 1px solid black;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-header h1 {
+  color: red;
+}
+
+.comment {
+  margin: 10px;
+}
+
+.comment * {
+  margin: 2px;
+}
+
+.comments {
+  border-top: 1px solid black;
+}
+
+.comments div {
+  font-size: 1.5em;
+}

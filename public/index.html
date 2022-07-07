@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <title>Flower catalog App</title>
+  <link rel="stylesheet" href="/styles/homePage.css">
+  <script>
+    const hideForSec = () => {
+      const gifEle = event.target;
+      gifEle.style.visibility = 'hidden';
+      setTimeout(() => gifEle.style.visibility = 'inherit', 1000);
+    };
+
+    const main = () => {
+      const targetElement = document.getElementById('flowerjar');
+      targetElement.addEventListener('click', hideForSec);
+    };
+
+    window.onload = main;
+  </script>
+</head>
+
+<body>
+  <div class="page-header">
+    <h1>Flower Catalog</h1>
+  </div>
+
+  <div class="page-body">
+    <img src="/images/freshorigins.jpg" alt="flowerImage" />
+    <div class="about-flowers">
+      <ul class="flowers-catalog">
+        <li><a href="/html/abeliophyllum.html">Abeliophyllum</a></li>
+        <li><a href="/html/ageratum.html">Ageratum</a></li>
+        <a href="/guestbook">Guest book</a>
+      </ul>
+      <div>
+        <img src="/images/flowerJar.gif" alt="flowerjar" id="flowerjar" />
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

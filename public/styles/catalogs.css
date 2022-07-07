@@ -1,0 +1,26 @@
+body {
+  height: 18px;
+}
+
+.page-header {
+  border-bottom: 1px solid black;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-header h1 {
+  color: #ffb221;
+}
+
+.page-body {
+  margin: 1em;
+  display: flex;
+  flex-direction: row;
+}
+
+.about-flower {
+  margin-left: 10px;
+}
