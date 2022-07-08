@@ -3,6 +3,7 @@
 <head>
   <title>Guest Book</title>
   <link rel="stylesheet" href="/styles/guestBook.css">
+  <script src="/js/guestBook.js"></script>
 </head>
 
 <body>
@@ -19,12 +20,13 @@
           <label for="comment">Comment:</label>
           <textarea name="comment" cols="30" rows="5"></textarea>
         </div>
-
-        <input type="submit" value="Post">
+        <input type="button" id="submit" value="Post">
       </form>
     </article>
-    <div class="comments">
-      __COMMENTS__
+    <div class="comments" id="comments">
+      <ul>
+        __COMMENTS__
+      </ul>
     </div>
   </div>
 </body>

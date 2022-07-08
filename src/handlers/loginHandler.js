@@ -27,7 +27,7 @@ const loginHandler = (sessions) => (req, res, next) => {
 
   res.statusCode = 302;
   res.setHeader('Location', '/');
-  res.end('sucessfully logged in');
+  res.end('');
 };
 
 module.exports = { loginHandler };

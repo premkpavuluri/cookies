@@ -7,7 +7,8 @@ const MIMETYPES = {
   '.pdf': 'application/pdf',
   '.css': 'text/css',
   '.json': 'application/json',
-  '.gif': 'application/gif'
+  '.gif': 'application/gif',
+  '.js': 'text/javascript'
 }
 
 const determineMimeType = (extension) => {

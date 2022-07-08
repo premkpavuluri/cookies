@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const formatComment = ({ name, comment, date }) => {
-  return `<div>${date} ${name}:${comment}</div>`;
+  return `<li>${date} ${name}:${comment}</li>`;
 };
 
 const formatComments = (comments) => {
@@ -32,10 +32,14 @@ const addComment = (request, response) => {
 
   persistComments(request.guestBook, './db/comments.json');
 
-  response.statusCode = 302;
-  response.setHeader('Location', '/guestbook');
-  response.end('Thank you');
+  response.statusCode = 201;
+  response.end('success');
   return true;
+};
+
+const serveComments = (req, res) => {
+  res.setHeader('content-type', 'application/json');
+  res.end(JSON.stringify(req.guestBook));
 };
 
 const handleGuestBook = (request, response, next) => {
@@ -47,6 +51,10 @@ const handleGuestBook = (request, response, next) => {
 
   if (pathname === '/guestbook' && request.method === 'GET') {
     return serveGuestBook(request, response);
+  }
+
+  if (pathname === '/comments' && request.method === 'GET') {
+    return serveComments(request, response);
   }
 
   next();
