@@ -1,13 +1,14 @@
-const generateSessionId = () => {
-  return new Date().getTime();
-};
-
-const createSession = (username, sessionId) => {
+const createSession = (username) => {
   const time = new Date();
+  const sessionId = time.getTime();
   return { username, time, sessionId };
 };
 
-const loginHandler = (sessions) => (req, res, next) => {
+const isUserValid = (username, usersDb) => {
+  return usersDb[username];
+};
+
+const loginHandler = (sessions, usersDb) => (req, res, next) => {
   const { pathname } = req.url;
 
   if (pathname !== '/login') {
@@ -15,11 +16,10 @@ const loginHandler = (sessions) => (req, res, next) => {
     return;
   }
 
-  const username = req.bodyParams.username;
-
-  if (req.method === 'POST' && username) {
-    const sessionId = generateSessionId();
-    const session = createSession(username, sessionId);
+  const { username } = req.bodyParams;
+  if (req.method === 'POST' && isUserValid(username, usersDb)) {
+    const session = createSession(username);
+    const { sessionId } = session
     sessions[sessionId] = session;
 
     res.setHeader('Set-Cookie', `sessionId=${sessionId}`);
