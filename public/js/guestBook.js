@@ -1,3 +1,15 @@
+const xhrReq = (req, onStatus, handler, body = '') => {
+  const xhr = new XMLHttpRequest();
+  xhr.onload = () => {
+    if (xhr.status === onStatus) {
+      handler(xhr);
+    }
+  };
+
+  xhr.open(req.method, req.url);
+  xhr.send(body);
+};
+
 const parseForm = (formData) => {
   return new URLSearchParams(formData).toString();
 };
@@ -28,26 +40,17 @@ const updateComments = (comments) => {
 };
 
 const requestComments = () => {
-  const commentReq = new XMLHttpRequest();
+  const request = { method: 'GET', url: '/comments' };
 
-  commentReq.onload = () => {
-    updateComments(JSON.parse(commentReq.responseText));
-  }
-  commentReq.open('GET', '/comments');
-  commentReq.send();
+  xhrReq(request, 200,
+    (xhrRes) => updateComments(JSON.parse(xhrRes.responseText)));
 };
 
 const sendComment = () => {
   const formData = getFormData();
-  const postCommentReq = new XMLHttpRequest();
 
-  postCommentReq.onload = () => {
-    if (postCommentReq.status === 201) {
-      requestComments();
-    }
-  }
-  postCommentReq.open('POST', '/logcomment');
-  postCommentReq.send(formData);
+  const request = { method: 'POST', url: '/logcomment' };
+  xhrReq(request, 201, requestComments, formData);
 };
 
 const main = () => {
