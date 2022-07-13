@@ -1,3 +1,4 @@
+const assert = require('assert');
 const request = require('supertest');
 const { createApp } = require('../src/app.js');
 
@@ -110,5 +111,41 @@ describe('POST /logcomment', () => {
       .set('Cookie', 'sessionId=1')
       .expect('success')
       .expect(201, done)
+  });
+});
+
+describe('GET /comments', () => {
+  beforeEach(() => {
+    const sessions = { 1: { username: 'prem', sessionId: 1 } };
+    app = createApp(appConfig, sessions, {});
+  });
+
+  it('Should serve the comments json', (done) => {
+    request(app)
+      .get('/comments')
+      .set('Cookie', 'sessionId=1')
+      .expect('content-type', /json/)
+      .expect(200, done)
+  });
+});
+
+describe('GET /logout', () => {
+  beforeEach(() => {
+    const sessions = { 1: { username: 'prem', sessionId: 1 } };
+    app = createApp(appConfig, sessions, {});
+  });
+
+  it('Should expire the cookie and remove the session', (done) => {
+    request(app)
+      .get('/logout')
+      .set('Cookie', 'sessionId=1')
+      .expect('location', '/loginpage')
+      .expect('Logout')
+      .expect(302)
+      .end((err, res) => {
+        const actual = res.header['set-cookie'];
+        assert.deepStrictEqual(actual, ['sessionId=1;Max-Age=0']);
+        done(err);
+      });
   });
 });
