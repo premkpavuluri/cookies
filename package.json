@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "myserver": "github:premkpavuluri/httpServerModule"
+  },
+  "devDependencies": {
+    "supertest": "^6.2.4"
   }
 }
