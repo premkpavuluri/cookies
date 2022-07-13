@@ -13,7 +13,7 @@ const { loginHandler } = require('./handlers/loginHandler.js');
 const { loginPageHandler } = require('./handlers/loginPageHandler.js');
 const { loadLoginForm } = require('./handlers/loadLoginForm.js');
 
-const connectHandlers = (appConfig, sessions, usersDb) => {
+const createApp = (appConfig, sessions, usersDb) => {
   const sessionHandler = injectSession(sessions);
   const loginUserHandler = loginHandler(sessions, usersDb);
   const logout = logoutHandler(sessions);
@@ -38,4 +38,4 @@ const connectHandlers = (appConfig, sessions, usersDb) => {
   return createRouter(handlers);
 };
 
-module.exports = { connectHandlers };
+module.exports = { createApp };

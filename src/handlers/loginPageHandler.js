@@ -13,6 +13,7 @@ const loginPageHandler = (req, res, next) => {
   if (req.session) {
     res.statusCode = 302;
     res.setHeader('Location', '/');
+    res.end('Already logged in');
     return;
   }
 

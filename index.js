@@ -1,5 +1,5 @@
 const { startServer } = require('myserver');
-const { connectHandlers } = require('./src/app.js');
+const { createApp } = require('./src/app.js');
 
 const appConfig = {
   logger: console.log,
@@ -17,6 +17,6 @@ const usersDb = {
   }
 };
 
-const app = connectHandlers(appConfig, sessions, usersDb);
+const app = createApp(appConfig, sessions, usersDb);
 
 startServer(80, app);
