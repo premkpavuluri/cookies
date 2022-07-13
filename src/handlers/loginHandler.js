@@ -35,8 +35,8 @@ const loginHandler = (sessions, usersDb) => (req, res, next) => {
   }
 
   res.statusCode = 302;
-  res.setHeader('Location', '/')
-  res.end('Home page');
+  res.setHeader('Location', '/loginpage')
+  res.end('Invalid credentials');
 };
 
 module.exports = { loginHandler };

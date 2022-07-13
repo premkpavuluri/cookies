@@ -12,10 +12,11 @@ const { logoutHandler } = require('./handlers/logoutHandler.js');
 const { loginHandler } = require('./handlers/loginHandler.js');
 const { loginPageHandler } = require('./handlers/loginPageHandler.js');
 const { loadLoginForm } = require('./handlers/loadLoginForm.js');
+const { commentsApi } = require('./api/commentsApi.js');
 
-const createApp = (appConfig, sessions, usersDb) => {
+const createApp = (appConfig, sessions, users) => {
   const sessionHandler = injectSession(sessions);
-  const loginUserHandler = loginHandler(sessions, usersDb);
+  const loginUserHandler = loginHandler(sessions, users);
   const logout = logoutHandler(sessions);
 
   const handlers = [
@@ -30,6 +31,7 @@ const createApp = (appConfig, sessions, usersDb) => {
     protectedHandler,
     authenticateSession,
     loadCommentsHandler(appConfig.db),
+    commentsApi,
     handleGuestBook,
     serveFileContent(appConfig.resource),
     logout,

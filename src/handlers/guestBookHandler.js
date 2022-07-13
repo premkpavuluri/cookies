@@ -30,16 +30,11 @@ const addComment = (request, response) => {
 
   request.guestBook.unshift(comment);
 
-  persistComments(request.guestBook, './db/comments.json');
+  persistComments(request.guestBook, request.dbPath);
 
   response.statusCode = 201;
   response.end('success');
   return true;
-};
-
-const serveComments = (req, res) => {
-  res.setHeader('content-type', 'application/json');
-  res.end(JSON.stringify(req.guestBook));
 };
 
 const handleGuestBook = (request, response, next) => {
@@ -51,10 +46,6 @@ const handleGuestBook = (request, response, next) => {
 
   if (pathname === '/guestbook' && request.method === 'GET') {
     return serveGuestBook(request, response);
-  }
-
-  if (pathname === '/comments' && request.method === 'GET') {
-    return serveComments(request, response);
   }
 
   next();

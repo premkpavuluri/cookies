@@ -10,6 +10,7 @@ const loadCommentsHandler = (path) => (request, response, next) => {
 
   if (isAddComment || isGuestBook || isCommentsApi || isComments) {
     const comments = JSON.parse(fs.readFileSync(path, 'utf8'));
+    request.dbPath = path;
     request.guestBook = comments;
   }
 

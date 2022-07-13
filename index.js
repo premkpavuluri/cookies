@@ -8,7 +8,7 @@ const appConfig = {
 }
 
 const sessions = {};
-const usersDb = {
+const users = {
   'pk': {
     username: 'prem'
   },
@@ -17,6 +17,6 @@ const usersDb = {
   }
 };
 
-const app = createApp(appConfig, sessions, usersDb);
+const app = createApp(appConfig, sessions, users);
 
 startServer(80, app);
