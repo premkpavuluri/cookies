@@ -22,12 +22,12 @@ const loginHandler = (sessions, usersDb) => (req, res, next) => {
     const { sessionId } = session
     sessions[sessionId] = session;
 
+    res.statusCode = 302;
     res.setHeader('Set-Cookie', `sessionId=${sessionId}`);
+    res.setHeader('Location', '/guestbook');
+    res.end(`Welcome ${username}`);
+    return;
   }
-
-  res.statusCode = 302;
-  res.setHeader('Location', '/');
-  res.end('');
 };
 
 module.exports = { loginHandler };

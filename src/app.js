@@ -13,17 +13,7 @@ const { loginHandler } = require('./handlers/loginHandler.js');
 const { loginPageHandler } = require('./handlers/loginPageHandler.js');
 const { loadLoginForm } = require('./handlers/loadLoginForm.js');
 
-const sessions = {};
-const usersDb = {
-  'pk': {
-    username: 'prem'
-  },
-  'john': {
-    username: 'Mr.john'
-  }
-};
-
-const connectHandlers = (appConfig) => {
+const connectHandlers = (appConfig, sessions, usersDb) => {
   const sessionHandler = injectSession(sessions);
   const loginUserHandler = loginHandler(sessions, usersDb);
   const logout = logoutHandler(sessions);
@@ -31,7 +21,7 @@ const connectHandlers = (appConfig) => {
   const handlers = [
     urlParserHandler,
     parseBodyParams,
-    logRequestHandler,
+    logRequestHandler(appConfig.logger),
     loadLoginForm,
     injectCookie,
     sessionHandler,

@@ -1,7 +1,16 @@
 const authenticateSession = (req, res, next) => {
+  const { pathname } = req.url;
+
+  const isReqGuestBook = pathname === '/guestbook';
+  const isReqLogComment = pathname === '/logcomment';
+  const isReqComments = pathname === '/comments';
+
+  if (!(isReqGuestBook || isReqLogComment || isReqComments)) {
+    return next();
+  }
+
   if (req.session) {
-    next();
-    return;
+    return next();
   }
 
   res.statusCode = 302;
