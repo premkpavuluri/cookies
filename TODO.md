@@ -1,6 +1,8 @@
 # Cookie.
 
 - **TODO**
+  - [ ] Test the app with supertest package.
+  - [ ] update the remote repo's name.
   - [ ] Persist the session info.
   - [ ] Make register user(signUp).
 

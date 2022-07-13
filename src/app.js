@@ -23,27 +23,29 @@ const usersDb = {
   }
 };
 
-const sessionHandler = injectSession(sessions);
-const loginUserHandler = loginHandler(sessions, usersDb);
-const logout = logoutHandler(sessions);
+const connectHandlers = (appConfig) => {
+  const sessionHandler = injectSession(sessions);
+  const loginUserHandler = loginHandler(sessions, usersDb);
+  const logout = logoutHandler(sessions);
 
-const handlers = [
-  urlParserHandler,
-  parseBodyParams,
-  logRequestHandler,
-  loadLoginForm,
-  injectCookie,
-  sessionHandler,
-  loginPageHandler,
-  loginUserHandler,
-  protectedHandler,
-  authenticateSession,
-  loadCommentsHandler('./db/comments.json'),
-  handleGuestBook,
-  serveFileContent('./public'),
-  logout,
-  notFoundHandler];
+  const handlers = [
+    urlParserHandler,
+    parseBodyParams,
+    logRequestHandler,
+    loadLoginForm,
+    injectCookie,
+    sessionHandler,
+    loginPageHandler,
+    loginUserHandler,
+    protectedHandler,
+    authenticateSession,
+    loadCommentsHandler(appConfig.db),
+    handleGuestBook,
+    serveFileContent(appConfig.resource),
+    logout,
+    notFoundHandler];
 
-const router = createRouter(handlers);
+  return createRouter(handlers);
+};
 
-module.exports = { router };
+module.exports = { connectHandlers };

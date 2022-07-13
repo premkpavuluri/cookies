@@ -1,4 +1,11 @@
 const { startServer } = require('myserver');
-const { router } = require('./src/app.js');
+const { connectHandlers } = require('./src/app.js');
 
-startServer(80, router);
+const appConfig = {
+  db: './db/comments.json',
+  resource: './public'
+}
+
+const app = connectHandlers(appConfig)
+
+startServer(80, app);
