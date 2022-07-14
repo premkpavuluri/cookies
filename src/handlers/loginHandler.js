@@ -21,13 +21,8 @@ const handleLoginUser = (req, res, sessions) => {
 };
 
 const loginHandler = (sessions, usersDb) => (req, res, next) => {
-  const { pathname } = req.url;
-
-  if (pathname !== '/login') {
-    return next();
-  }
-
   const { username } = req.bodyParams;
+
   if (req.method === 'POST') {
     if (isUserValid(username, usersDb)) {
       return handleLoginUser(req, res, sessions);

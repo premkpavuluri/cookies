@@ -3,14 +3,4 @@ const serveComments = (req, res) => {
   res.end(JSON.stringify(req.guestBook));
 };
 
-const commentsApi = (req, res, next) => {
-  const { pathname } = req.url;
-
-  if (pathname === '/comments' && req.method === 'GET') {
-    return serveComments(req, res);
-  }
-
-  next();
-};
-
-module.exports = { commentsApi };
+module.exports = { serveComments };

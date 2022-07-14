@@ -4,12 +4,6 @@ const showLoginPage = (req, res) => {
 };
 
 const loginPageHandler = (req, res, next) => {
-  const { pathname } = req.url;
-
-  if (pathname !== '/loginpage') {
-    return next();
-  }
-
   if (req.session) {
     res.statusCode = 302;
     res.setHeader('Location', '/');

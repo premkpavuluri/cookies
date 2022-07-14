@@ -1,15 +1,4 @@
 const authenticateSession = (req, res, next) => {
-  const { pathname } = req.url;
-
-  const isReqGuestBook = pathname === '/guestbook';
-  const isReqLogComment = pathname === '/logcomment';
-  const isReqComments = pathname === '/comments';
-  const isLogout = pathname === '/logout';
-
-  if (!(isReqGuestBook || isReqLogComment || isReqComments || isLogout)) {
-    return next();
-  }
-
   if (req.session) {
     return next();
   }

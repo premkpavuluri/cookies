@@ -9,13 +9,8 @@ const logout = (req, res, sessions) => {
 };
 
 const logoutHandler = (sessions) => (req, res, next) => {
-  const { pathname } = req.url;
-
-  if (pathname !== '/logout') {
-    return next();
-  }
-
   logout(req, res, sessions);
+  next();
 };
 
 module.exports = { logoutHandler };

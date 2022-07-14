@@ -1,13 +1,7 @@
-const { startServer } = require('myserver');
 const { createApp } = require('./src/app.js');
 
-const appConfig = {
-  logger: console.log,
-  db: './db/comments.json',
-  resource: './public'
-}
+const sessions = { 1: { username: 'pk', sessionId: 1 } };
 
-const sessions = {};
 const users = {
   'pk': {
     username: 'prem'
@@ -17,6 +11,12 @@ const users = {
   }
 };
 
+const appConfig = {
+  logger: console.log,
+  db: './db/comments.json',
+  resource: './public/'
+};
+
 const app = createApp(appConfig, sessions, users);
 
-startServer(80, app);
+app.listen(80, () => console.log('Server listening on port:80'));
