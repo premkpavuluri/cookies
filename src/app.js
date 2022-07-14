@@ -31,7 +31,7 @@ const createApp = (appConfig, sessions, users) => {
   app.get('/logout', authenticateSession, logoutHandler(sessions));
 
   app.use(loadCommentsHandler(appConfig.db));
-  app.get('/guestbook', authenticateSession, serveGuestBook);
+  app.get('/guest-book', authenticateSession, serveGuestBook);
   app.post('/logcomment', authenticateSession, addComment);
   app.get('/comments', authenticateSession, serveComments);
 

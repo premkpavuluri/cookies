@@ -69,7 +69,7 @@ describe('POST /login', () => {
   });
 });
 
-describe('GET /guestbook', () => {
+describe('GET /guest-book', () => {
   let app;
   beforeEach(() => {
     appConfig.db = './test/testData/db/comments.json';
@@ -77,17 +77,17 @@ describe('GET /guestbook', () => {
     app = createApp(appConfig, sessions, {});
   });
 
-  it('Should redirect to loginpage if not login, on GET /guestbook', (done) => {
+  it('Should redirect to loginpage if not login, on GET /guest-book', (done) => {
     request(app)
-      .get('/guestbook')
+      .get('/guest-book')
       .expect('location', '/loginpage')
       .expect('Access denied.')
       .expect(302, done)
   });
 
-  it('Should serve the guestbook if login, on GET /guestbook', (done) => {
+  it('Should serve the guest-book if login, on GET /guest-book', (done) => {
     request(app)
-      .get('/guestbook')
+      .get('/guest-book')
       .set('Cookie', 'sessionId=1')
       .expect('content-type', /html/)
       .expect(/<title>Guest Book<\/title>/)

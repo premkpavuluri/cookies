@@ -18,7 +18,7 @@ const getFormData = (form) => {
 };
 
 const redirectToGuestBook = (xhr) => {
-  window.location.href = '/guestbook';
+  window.location.href = '/guest-book';
 };
 
 const showInvalidLogin = (xhr) => {

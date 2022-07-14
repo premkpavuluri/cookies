@@ -3,7 +3,7 @@ const fs = require('fs');
 const loadCommentsHandler = (path) => (request, response, next) => {
   const pathname = request.url;
 
-  const isGuestBook = pathname === '/guestbook';
+  const isGuestBook = pathname === '/guest-book';
   const isAddComment = pathname === '/logcomment';
   const isComments = pathname === '/comments';
 

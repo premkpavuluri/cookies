@@ -13,8 +13,8 @@ const serveGuestBook = (request, response) => {
   const comments = formatComments(request.guestBook);
   const html = template.replace('__COMMENTS__', comments);
 
-  response.setHeader('Content-Type', 'text/html');
-  response.end(html);
+  response.set('Content-Type', 'text/html');
+  response.send(html);
   return true;
 };
 

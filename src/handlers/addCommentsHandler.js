@@ -14,9 +14,7 @@ const addComment = (request, response) => {
 
   persistComments(request.guestBook, request.dbPath);
 
-  response.statusCode = 201;
-  response.end('success');
-  return true;
+  response.status(201).send('success');
 };
 
 module.exports = { addComment };
