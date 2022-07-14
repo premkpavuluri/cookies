@@ -26,7 +26,7 @@ describe('GET /loginpage', () => {
     request(app)
       .get('/loginpage')
       .expect('content-type', /html/)
-      .expect('content-length', '257')
+      .expect('content-length', '364')
       .expect(200, done)
   });
 
@@ -52,9 +52,8 @@ describe('POST /login', () => {
     request(app)
       .post('/login')
       .send('username=pk')
-      .expect('location', '/guestbook')
       .expect('Welcome pk')
-      .expect(302, done)
+      .expect(200, done)
   });
 
   it('Should redirect to loginpage if user is not valid.', (done) => {
@@ -65,9 +64,8 @@ describe('POST /login', () => {
     request(app)
       .post('/login')
       .send('username=unknown')
-      .expect('location', '/loginpage')
       .expect('Invalid credentials')
-      .expect(302, done)
+      .expect(401, done)
   });
 });
 

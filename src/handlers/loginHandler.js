@@ -15,11 +15,9 @@ const handleLoginUser = (req, res, sessions) => {
 
   sessions[sessionId] = session;
 
-  res.statusCode = 302;
+  res.statusCode = 200;
   res.setHeader('Set-Cookie', `sessionId=${sessionId}`);
-  res.setHeader('Location', '/guestbook');
   res.end(`Welcome ${username}`);
-  return;
 };
 
 const loginHandler = (sessions, usersDb) => (req, res, next) => {
@@ -30,13 +28,19 @@ const loginHandler = (sessions, usersDb) => (req, res, next) => {
   }
 
   const { username } = req.bodyParams;
-  if (req.method === 'POST' && isUserValid(username, usersDb)) {
-    return handleLoginUser(req, res, sessions);
+  if (req.method === 'POST') {
+    if (isUserValid(username, usersDb)) {
+      return handleLoginUser(req, res, sessions);
+    }
+
+    res.statusCode = 401;
+    res.end('Invalid credentials');
+    return;
   }
 
   res.statusCode = 302;
   res.setHeader('Location', '/loginpage')
-  res.end('Invalid credentials');
+  res.end('');
 };
 
 module.exports = { loginHandler };
