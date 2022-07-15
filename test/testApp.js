@@ -14,7 +14,8 @@ describe('GET /badRequest', () => {
 
     request(app)
       .get('/badRequest')
-      .expect('Not Found')
+      .expect('content-type', /html/)
+      .expect(/<title>Error<\/title>/)
       .expect(404, done);
   });
 });

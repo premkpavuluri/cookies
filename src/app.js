@@ -14,11 +14,6 @@ const { logoutHandler } = require('./handlers/logoutHandler.js');
 const { addComment } = require('./handlers/addCommentsHandler.js');
 const { serveComments } = require('./api/commentsApi.js');
 
-const notFound = (req, res) => {
-  res.status(404);
-  res.end('Not Found');
-};
-
 const createApp = (appConfig, sessions, users) => {
   const app = express();
 
@@ -36,8 +31,6 @@ const createApp = (appConfig, sessions, users) => {
   app.get('/comments', authenticateSession, serveComments);
 
   app.use(express.static(appConfig.resource));
-
-  app.use(notFound);
 
   return app;
 };

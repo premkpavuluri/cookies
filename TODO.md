@@ -1,7 +1,6 @@
 # Cookie.
 
 - **TODO**
-  - [ ] Use default not found handler.
   - [ ] Update the app with express framework.
   - [ ] Inject the template the before server start.
   - [ ] Name handlers according to Endpoints.(/add-comment => addCommentHandler)
@@ -11,6 +10,7 @@
   - [ ] Extract the flowerjar script in index.html
 
 - **DONE:**
+  - [x] Use default not found handler.
   - [x] Change the name of the endpoints as kebab case.(ex: add-comment)
   - [x] Test the app with supertest package.
   - [x] Extract xhrReq function.
