@@ -14,7 +14,7 @@ const xhrRequest = (request, onStatus, handler, altHandler, body = '') => {
 
 const getFormData = (form) => {
   const formData = new FormData(form);
-  return new URLSearchParams(formData).toString();
+  return new URLSearchParams(formData);
 };
 
 const redirectToGuestBook = (xhr) => {

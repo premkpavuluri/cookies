@@ -10,15 +10,12 @@ const xhrReq = (req, onStatus, handler, body = '') => {
   xhr.send(body);
 };
 
-const parseForm = (formData) => {
-  return new URLSearchParams(formData).toString();
-};
-
 const getFormData = () => {
   const form = document.querySelector('form');
   const formData = new FormData(form);
   form.reset();
-  return parseForm(formData);
+
+  return new URLSearchParams(formData);
 };
 
 const createComment = ({ name, comment, date }) => {
@@ -48,7 +45,6 @@ const requestComments = () => {
 
 const sendComment = () => {
   const formData = getFormData();
-
   const request = { method: 'POST', url: '/add-comment' };
   xhrReq(request, 201, requestComments, formData);
 };

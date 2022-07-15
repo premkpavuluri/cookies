@@ -13,9 +13,7 @@ const serveGuestBook = (request, response) => {
   const comments = formatComments(request.guestBook);
   const html = template.replace('__COMMENTS__', comments);
 
-  response.set('Content-Type', 'text/html');
-  response.send(html);
-  return true;
+  response.type('html').end(html);
 };
 
 module.exports = { serveGuestBook };

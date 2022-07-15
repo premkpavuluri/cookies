@@ -1,8 +1,6 @@
 # Cookie.
 
 - **TODO**
-  - [ ] Use express body parser.
-  - [ ] Update the app with express framework.
   - [ ] Inject the template the before server start.
   - [ ] update the remote repo's name.
   - [ ] Persist the session info.
@@ -11,7 +9,9 @@
   - [ ] Pass the dependencies to handlers.
 
 - **DONE:**
-  - [x] Name handlers according to Endpoints.(/add-comment => addCommentHandler)
+  - [x] Update the app with express framework.
+  - [x] Use express body parser.
+  - [x] Name handlers according to url.(/add-comment => addCommentHandler)
   - [x] Change loginpage to login.
   - [x] Use default not found handler.
   - [x] Change the name of the endpoints as kebab case.(ex: add-comment)

@@ -13,11 +13,10 @@ const isUserValid = (username, usersDb) => {
 const handleLoginUser = (req, res, sessions) => {
   const { username } = req.bodyParams;
   const session = createSession(username);
-  const { sessionId } = session
-
+  const { sessionId } = session;
   sessions[sessionId] = session;
 
-  res.cookie(`sessionId=${sessionId}`).end(`Welcome ${username}`);
+  res.cookie('sessionId', sessionId).end(`Welcome ${username}`);
 };
 
 const loginHandler = (sessions, usersDb) => (req, res, next) => {
