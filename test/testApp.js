@@ -94,16 +94,16 @@ describe('GET /guest-book', () => {
   });
 });
 
-describe('POST /logcomment', () => {
+describe('POST /add-comment', () => {
   beforeEach(() => {
     appConfig.db = './test/testData/db/comments.json';
     const sessions = { 1: { username: 'prem', sessionId: 1 } };
     app = createApp(appConfig, sessions, {});
   });
 
-  it('Should add the comment on POST /logcomment', (done) => {
+  it('Should add the comment on POST /add-comment', (done) => {
     request(app)
-      .post('/logcomment')
+      .post('/add-comment')
       .send('comment=hello world')
       .set('Cookie', 'sessionId=1')
       .expect('success')
@@ -127,21 +127,18 @@ describe('GET /comments', () => {
 });
 
 describe('GET /logout', () => {
-  beforeEach(() => {
+  it('Should expire the cookie and remove the session', (done) => {
     const sessions = { 1: { username: 'prem', sessionId: 1 } };
     app = createApp(appConfig, sessions, {});
-  });
 
-  it('Should expire the cookie and remove the session', (done) => {
     request(app)
       .get('/logout')
       .set('Cookie', 'sessionId=1')
       .expect('location', '/login')
-      .expect('Logout')
       .expect(302)
       .end((err, res) => {
-        const actual = res.header['set-cookie'];
-        assert.deepStrictEqual(actual, ['sessionId=1;Max-Age=0']);
+        const actual = sessions['1'];
+        assert.deepStrictEqual(actual, undefined);
         done(err);
       });
   });

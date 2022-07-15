@@ -1,16 +1,9 @@
-const logout = (req, res, sessions) => {
+const logoutHandler = (sessions) => (req, res, next) => {
   const { sessionId } = req.session;
 
   delete sessions[sessionId];
-  res.setHeader('Set-Cookie', `sessionId=${sessionId};Max-Age=0`);
-  res.statusCode = 302;
-  res.setHeader('Location', '/login');
-  res.end('Logout');
-};
 
-const logoutHandler = (sessions) => (req, res, next) => {
-  logout(req, res, sessions);
-  next();
+  res.clearCookie('sessionId').redirect('/login');
 };
 
 module.exports = { logoutHandler };

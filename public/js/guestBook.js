@@ -49,7 +49,7 @@ const requestComments = () => {
 const sendComment = () => {
   const formData = getFormData();
 
-  const request = { method: 'POST', url: '/logcomment' };
+  const request = { method: 'POST', url: '/add-comment' };
   xhrReq(request, 201, requestComments, formData);
 };
 

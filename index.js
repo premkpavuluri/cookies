@@ -6,8 +6,14 @@ const users = {
   'pk': {
     username: 'prem'
   },
-  'john': {
-    username: 'Mr.john'
+  'ankamma': {
+    username: 'Ankamma rao'
+  },
+  'swap': {
+    username: 'Swapnil'
+  },
+  'tanmay': {
+    username: 'Tanmay'
   }
 };
 

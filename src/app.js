@@ -21,13 +21,14 @@ const createApp = (appConfig, sessions, users) => {
   app.use(logRequestHandler(appConfig.logger));
   app.use(injectCookie);
   app.use(injectSession(sessions));
+
   app.get('/login', injectLoginForm, loginPageHandler);
   app.post('/login', loginHandler(sessions, users));
   app.get('/logout', authenticateSession, logoutHandler(sessions));
 
   app.use(loadCommentsHandler(appConfig.db));
   app.get('/guest-book', authenticateSession, serveGuestBook);
-  app.post('/logcomment', authenticateSession, addComment);
+  app.post('/add-comment', authenticateSession, addComment);
   app.get('/comments', authenticateSession, serveComments);
 
   app.use(express.static(appConfig.resource));
