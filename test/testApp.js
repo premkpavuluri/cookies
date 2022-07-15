@@ -20,26 +20,25 @@ describe('GET /badRequest', () => {
   });
 });
 
-describe('GET /loginpage', () => {
-  it('Should give loginpage on GET /loginpage.(no session)', (done) => {
+describe('GET /login', () => {
+  it('Should give loginpage on GET /login.(no session)', (done) => {
     const app = createApp(appConfig, {}, {});
 
     request(app)
-      .get('/loginpage')
+      .get('/login')
       .expect('content-type', /html/)
       .expect('content-length', '364')
-      .expect(200, done)
+      .expect(200, done);
   });
 
-  it('Should redirect to / on GET /loginpage when session present', (done) => {
+  it('Should redirect to / on GET /login when session present', (done) => {
     const sessions = { 1: { username: 'pk', sessionId: 1 } };
     const app = createApp(appConfig, sessions, {});
 
     request(app)
-      .get('/loginpage')
+      .get('/login')
       .set('Cookie', 'sessionId=1')
       .expect('location', '/')
-      .expect('Already logged in')
       .expect(302, done);
   });
 });
@@ -81,8 +80,7 @@ describe('GET /guest-book', () => {
   it('Should redirect to loginpage if not login, on GET /guest-book', (done) => {
     request(app)
       .get('/guest-book')
-      .expect('location', '/loginpage')
-      .expect('Access denied.')
+      .expect('location', '/login')
       .expect(302, done)
   });
 
@@ -138,7 +136,7 @@ describe('GET /logout', () => {
     request(app)
       .get('/logout')
       .set('Cookie', 'sessionId=1')
-      .expect('location', '/loginpage')
+      .expect('location', '/login')
       .expect('Logout')
       .expect(302)
       .end((err, res) => {

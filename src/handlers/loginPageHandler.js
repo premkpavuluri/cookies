@@ -1,20 +1,10 @@
-const showLoginPage = (req, res) => {
-  res.setHeader('content-type', 'text/html');
-  res.end(req.loginForm);
-};
-
 const loginPageHandler = (req, res, next) => {
   if (req.session) {
-    res.statusCode = 302;
-    res.setHeader('Location', '/');
-    res.end('Already logged in');
+    res.redirect('/');
     return;
   }
 
-  if (req.method === 'GET') {
-    showLoginPage(req, res);
-    return;
-  }
+  res.type('html').end(req.loginForm);
 };
 
 module.exports = { loginPageHandler };

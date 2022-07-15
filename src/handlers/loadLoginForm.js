@@ -13,14 +13,4 @@ const injectLoginForm = (req, res, next) => {
   });
 };
 
-const loadLoginForm = (req, res, next) => {
-  // const { pathname } = req.url;
-
-  // if (pathname !== '/loginpage') {
-  //   return next();
-  // }
-
-  injectLoginForm(req, res, next);
-};
-
-module.exports = { loadLoginForm };
+module.exports = { injectLoginForm };

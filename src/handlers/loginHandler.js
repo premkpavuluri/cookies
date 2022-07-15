@@ -5,7 +5,9 @@ const createSession = (username) => {
 };
 
 const isUserValid = (username, usersDb) => {
-  return usersDb[username];
+  const user = usersDb[username];
+
+  return user !== undefined;
 };
 
 const handleLoginUser = (req, res, sessions) => {
@@ -15,27 +17,17 @@ const handleLoginUser = (req, res, sessions) => {
 
   sessions[sessionId] = session;
 
-  res.statusCode = 200;
-  res.setHeader('Set-Cookie', `sessionId=${sessionId}`);
-  res.end(`Welcome ${username}`);
+  res.cookie(`sessionId=${sessionId}`).end(`Welcome ${username}`);
 };
 
 const loginHandler = (sessions, usersDb) => (req, res, next) => {
   const { username } = req.bodyParams;
 
-  if (req.method === 'POST') {
-    if (isUserValid(username, usersDb)) {
-      return handleLoginUser(req, res, sessions);
-    }
-
-    res.statusCode = 401;
-    res.end('Invalid credentials');
-    return;
+  if (isUserValid(username, usersDb)) {
+    return handleLoginUser(req, res, sessions);
   }
 
-  res.statusCode = 302;
-  res.setHeader('Location', '/loginpage')
-  res.end('');
+  res.status(401).end('Invalid credentials');
 };
 
 module.exports = { loginHandler };

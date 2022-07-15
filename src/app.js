@@ -4,7 +4,7 @@ const { parseBodyParams } = require('./handlers/parseBodyParams.js');
 const { logRequestHandler } = require('./handlers/logRequest.js');
 const { injectCookie } = require('./handlers/cookiesHandler.js');
 const { injectSession } = require('./handlers/sessionHandler.js');
-const { loadLoginForm } = require('./handlers/loadLoginForm.js');
+const { injectLoginForm } = require('./handlers/loadLoginForm.js');
 const { loginPageHandler } = require('./handlers/loginPageHandler.js');
 const { loginHandler } = require('./handlers/loginHandler.js');
 const { serveGuestBook } = require('./handlers/guestBookHandler.js');
@@ -21,7 +21,7 @@ const createApp = (appConfig, sessions, users) => {
   app.use(logRequestHandler(appConfig.logger));
   app.use(injectCookie);
   app.use(injectSession(sessions));
-  app.get('/loginpage', loadLoginForm, loginPageHandler);
+  app.get('/login', injectLoginForm, loginPageHandler);
   app.post('/login', loginHandler(sessions, users));
   app.get('/logout', authenticateSession, logoutHandler(sessions));
 

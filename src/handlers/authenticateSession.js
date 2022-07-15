@@ -3,9 +3,7 @@ const authenticateSession = (req, res, next) => {
     return next();
   }
 
-  res.statusCode = 302;
-  res.setHeader('Location', '/loginpage');
-  res.end('Access denied.');
+  res.redirect('/login');
 };
 
 module.exports = { authenticateSession };
